@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preload" href="vecteezy_view-of-planet-mars_47232429.jpeg" as="image">
+
+  </head>
+<style>
+  body
+  {
+    background-image: url('vecteezy_view-of-planet-mars_47232429.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: multiply; 
+}
+.container {
+    background-color: rgba(0, 0, 0, 0.5);
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+            width: 90%;
+            max-width: 600px;
+            position: absolute;
+            left: 28%;
+            top:35%;
+        }
+
+        
+        .container h1 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color:azure;
+        }
+
+    
+        #fileInput {
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid azure;
+            border-radius: 5px;
+            background-color:#333;
+            cursor: pointer;
+            width: 100%;
+            max-width: 400px;
+            margin-bottom: 15px;
+            color: azure;
+        }
+
+        
+        button {
+            background-color:#1E1E78;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+            font-weight: bold;
+           
+        }
+
+        
+        button:hover {
+            background-color: #4A4ABF;
+        }
+
+    
+        .result {
+            margin-top: 20px;
+            display: none; 
+        }
+
+        .result h2 {
+            font-size: 1.5rem;
+            color: #333;
+        }
+
+        
+        #enhancedImage {
+            max-width: 100%;
+            height: auto;
+            margin-top: 15px;
+            border: 2px solid #4CAF50;
+            border-radius: 10px;
+            display: block;
+        }
+         input[type="file"]::file-selector-button {
+            background-color:#C1440E;
+            color: #fff;
+            border: none;
+            padding: 0.75rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        #events{
+          color :azure;
+        }
+        h2{
+          color :azure;
+        }
+
+
+</style>
+<body>
+  <div class="container">
+    <h1>Seismic Waves Prediction</h1>
+    <form id="seismic-form" enctype="multipart/form-data">
+      <input type="file" id="fileInput" name="file" required />
+      <button type="submit">Upload</button>
+    </form>
+
+    <div class="result" id="result">
+      <ol id="events"></ol>
+      <h2>Seismic Waves Plot:</h2>
+      <img id="enhancedImage" src="" alt="Seismic plot will appear here" />
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('seismic-form').addEventListener('submit', async function (event) {
+      event.preventDefault(); // Prevent the form from submitting the traditional way
+
+      const fileInput = document.getElementById('fileInput');
+      const file = fileInput.files[0];
+
+      // Ensure a file is selected
+      if (!file) {
+        alert('Please upload a CSV file.');
+        return;
+      }
+
+      // Prepare form data
+      const formData = new FormData();
+      formData.append('file', file);
+
+      try {
+        // Send POST request to FastAPI backend
+        const response = await fetch('http://127.0.0.1:8000/predict-seismic-events/', {
+          method: 'POST',
+          body: formData
+        });
+
+        // Handle the response
+        if (response.ok) {
+          const data = await response.json();
+
+          // Update the events list
+          document.getElementById('events').innerText = `Predicted Seismic Events: ${data.predicted_seismic_events}`;
+
+          // Display the plot by setting the src attribute of the img tag
+          document.getElementById('enhancedImage').src = `data:image/png;base64,${data.plot}`;
+
+          // Show the result div
+          document.getElementById('result').style.display = 'block';
+        } else {
+          alert('Error in predicting seismic events.');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        alert('An error occurred while processing the file.');
+      }
+    });
+  </script>
+</body>
+</html>

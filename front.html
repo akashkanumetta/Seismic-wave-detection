@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASA</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+         html, body {
+            height: 100%;
+            margin: 0;
+            
+            
+        }
+
+        
+        .background-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1800px;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+    
+        .page {
+            
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            width: 100%;
+    
+            color: white;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            padding-left: 20%;
+        }
+
+        
+        .home {
+            position: absolute;
+            top: 9%;
+            right: 14%;
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        
+        .about {
+            position: absolute;
+            top: 8%;
+            left: 20%;
+            font-size: 25px;
+            font-family: 'Times New Roman', Times, serif;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        
+        .about:hover, .home:hover {
+            background-color: azure;
+            color: black;
+        }
+
+        
+        .logo {
+            position: absolute;
+            top: 0.2%;
+            left: 10px;
+            width: 200px;
+            height: auto;
+            filter: brightness(2.5);
+        }
+        
+        .image-slider {
+            position: relative;
+            overflow: hidden;
+            height: 900px;
+            width: 700px;
+            margin: 2rem auto;
+        }
+
+        .slide {
+            position: relative;
+            display: none;
+        }
+
+        .slide.active {
+            display: block;
+            position: absolute;
+            top:30%;
+        }
+
+        .slide img {
+            width: 900px;
+            height: 500px;
+        
+            display: block;
+            opacity: 0.7; 
+        }
+
+        .slide-text {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: #fff;
+            padding: 10px;
+            background-color: rgba(0, 0, 0, 0.5); 
+            border-radius: 5px;
+            max-width: 60%;
+            font-size: 20px;
+        }
+        .slider-nav {
+            position: absolute;
+            top: 70%;
+            width: 50px;
+            height: 50px;
+            padding: 10px;
+            margin-top: -25px;
+            color: #fff;
+            font-weight: bold;
+            font-size: 24px;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            cursor: pointer;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
+        .slider-nav.prev {
+            left: 30px;
+        }
+
+        .slider-nav.next {
+            right: 30px;
+            top:72%;
+        }
+        .slider-nav.next:hover
+        {
+            background-color: white;
+            color: black;
+        }
+        .slider-nav.prev:hover{
+            background-color: white;
+            color: black;
+        }
+        .header
+        {
+            font-family:'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: 35px;
+            color: white;
+            position: absolute;
+            left: 35%;
+            top:12%;
+            text-shadow: 3px 3px 0px #000, 6px 6px 0px #555;
+        }
+        .img1
+        {
+            background-color: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            left: 15%;
+            border-radius: 56px;
+
+        }
+        .img1:hover{
+            background-color: rgb(204, 206, 206);
+            cursor: pointer;
+        }
+        .img2{
+            background-color:rgba(0, 0, 0, 0.5); 
+            position: absolute;
+            left:65%;
+            padding: 10px 10px;
+            border-radius: 56px;
+            
+        }
+        .img2:hover{
+            background-color: rgb(204, 206, 206); 
+            cursor: pointer;
+        }
+        .d
+        {  
+            background-color: rgba(211, 211, 211, 0.5);
+        
+    padding: 20px;
+    text-align: center;
+    height:400px;
+    opacity: 0.7s;
+    padding: 45px 45px;
+            
+
+    }
+    .moon
+    
+    {
+        font-family:'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: 30px;
+            color: white;
+            position: absolute;
+            left: 11%;
+            top:178%;
+            text-shadow: 3px 3px 0px #000, 6px 6px 0px #555; 
+    }
+    .mars{
+               
+        font-family:'Times New Roman', Times, serif;
+            font-weight: bolder;
+            font-size: 30px;
+            color: white;
+            position: absolute;
+            left: 62%;
+            top:178%;
+            text-shadow: 3px 3px 0px #000, 6px 6px 0px #555; 
+    }
+    </style>
+</head>
+<body>
+    <div class="header">
+        WELCOME TO OUR PLATFORM
+    </div>
+    <div class="front">
+        <video class="background-video" autoplay muted loop>
+            <source src="vecteezy_holographic-of-planet-earth-with-connection-data_2014288.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+
+    <div class="page">
+        <div class="home">LET'S BEGIN</div>
+     <div class="about">
+                ABOUT US
+     </div>
+        </div>
+    </div>
+    
+
+    <img class="logo" src="LunarNova2 (1)[2].png" alt="Logo">
+
+    
+    <div class="slider" id ="image-slider-section">
+        <div class="image-slider">
+        
+            <div class="slide active">
+                <img src="vecteezy_heartbeat-pulsating-on-computer-monitor-doctor-analyzing_24791366.jpg" alt="Slide 1">
+                <div class="slide-text">
+                    <b>OUR MISSION:</b>
+                    <br>
+        <p> At Lunar Nova, we are passionate about exploring the frontiers of space science and technology to better understand planetary seismic activities. Our mission is to develop innovative machine learning solutions to predict seismic events, using data from some of humanity's greatest explorations—the Apollo missions and NASA’s Mars InSight Lander.
+
+        </p>
+                </div>
+            </div>
+
+            
+            <div class="slide" >
+                <img src="vecteezy_our-3d-solar-system-with-planets-in-orbits-path-ai-generative_32411573.jpg" alt="Slide 2">
+                <div class="slide-text">
+                    <b>MACHINE LEARNING: THE NEW WAVE IN SEISMIC DETECTION</b>
+                    <p>Our platform combines state-of-the-art algorithms with real-world data from these missions to detect and predict seismic events. We analyze continuous seismic records, leveraging both traditional techniques like Short-term Average to Long-term Average (STA/LTA) and advanced machine learning models. Our goal is to create accurate forecasts of seismic activity by identifying patterns and anomalies that could signify seismic events, even uncovering events not previously cataloged.
+                
+                        </p>
+                </div>
+            </div>
+
+            
+            <div class="slide">
+                <img src="vecteezy_astronaut-on-planet-mars-sitting-on-a-cliff_23809393.jpg" alt="Slide 3">
+                <div class="slide-text">
+                    <b>This is Your Moment!</b>
+                    <p>Whether you are a scientist, a space enthusiast, or a tech pioneer, we invite you to join us in unlocking the mysteries of planetary seismic activity. Together, we’re not just predicting seismic events—we’re shaping the future of space exploration and planetary safety.</p>
+                </div>
+            </div>
+        </div>
+
+    
+        <button class="slider-nav prev" onclick="prevSlide()">&#10094;</button>
+        <button class="slider-nav next" onclick="nextSlide()">&#10095;</button>
+    </div>
+    <div class="d" id ="di">
+      <a href="moon.html">  
+    <img src="moon-10061.png" width="300ox" height="300px" class="img1">
+    </a>
+    <a href="mars.html">
+    <img src="Mars-PNG-HD-Image.png" width="300px" height="300px" class="img2">
+    </a>
+    <div class ="moon"> MOON QUAKES DETECTION</div>
+    
+    <div class ="mars"> MARS  QUAKES DETECTION</div>
+
+</div>
+    <script>
+        let slideIndex = 0;
+        let autoSlide;
+
+        function showSlide(index) {
+            const slides = document.querySelectorAll('.slide');
+            if (index >= slides.length) slideIndex = 0;
+            if (index < 0) slideIndex = slides.length - 1;
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                if (i === slideIndex) {
+                    slide.classList.add('active');
+                }
+            });
+        }
+
+        function nextSlide() {
+            slideIndex++;
+            showSlide(slideIndex);
+            resetAutoSlide();
+        }
+
+        function prevSlide() {
+            slideIndex--;
+            showSlide(slideIndex);
+            resetAutoSlide();
+        }
+
+        // Initialize the slider
+        showSlide(slideIndex);
+
+        // Auto-slide functionality
+        function startAutoSlide() {
+            autoSlide = setInterval(nextSlide, 5000);
+        }
+
+        function resetAutoSlide() {
+            clearInterval(autoSlide);
+            startAutoSlide();
+        }
+
+        startAutoSlide();
+        document.querySelector('.about').addEventListener('click', function() {
+            document.getElementById('image-slider-section').scrollIntoView({ behavior: 'smooth' });
+        });
+        document.querySelector('.home').addEventListener('click', function() {
+            document.getElementById('di').scrollIntoView({ behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
