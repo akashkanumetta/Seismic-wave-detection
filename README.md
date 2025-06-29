@@ -1,4 +1,4 @@
-### Seismic Wave Detection on Moon and Mars
+## Seismic Wave Detection on Moon and Mars
 
 This project focuses on detecting seismic waves from extraterrestrial environments, such as the Moon and Mars, using real velocity data. By applying time-series feature engineering and training a machine learning model (Random Forest), the system can detect potential seismic events with visual and statistical outputs.
 
